@@ -108,15 +108,25 @@ function getSavedCart() {
     li.addEventListener('click', cartItemClickListener);
   });
 }
-  
+  function hideLoading() {
+    const loading = document.querySelector('.loading');
+    setTimeout(() => loading.parentNode.removeChild(loading), 2000);
+  }
 window.onload = () => {  
+// function teste () {
+//   console.log(fetch("https://api.mercadolibre.com/sites/MLB/search?q=computador"))
+
+// }
+// teste();
+
    getSavedCart();
    clearCart();
-  function getInfoApi() {
-   fetch('https://api.mercadolibre.com/sites/MLB/search?q=$computador')
-   .then((fetchPromise) => fetchPromise.json())
-   .then((product) => newElementFromApi(product))
-   .then((product) => product.forEach((item) => createProductItemElement(item)));
+  async function getInfoApi() {
+   hideLoading();
+    setTimeout(() => fetch('https://api.mercadolibre.com/sites/MLB/search?q=$computador')
+    .then((fetchPromise) => fetchPromise.json())
+    .then((product) => newElementFromApi(product))
+    .then((product) => product.forEach((item) => createProductItemElement(item))), 2100);
 }
 getInfoApi(); 
 };
