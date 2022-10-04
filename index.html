@@ -3,19 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Chopper's Shopp</title>
+    <link rel="shortcut icon" href='chop-icon.png'>
+    <link rel="stylesheet" href="style.css"/>
     <script src="script.js"></script>
+    <script src="//cdn.rawgit.com/namuol/cheet.js/master/cheet.min.js"
+    type="text/javascript"></script>
   </head>
 
   <body>
+    <header>
+      <img src='chop-header.png' class='header-img'>
+     <img src='chop-logo.png'class='logo'>
+     <div class="div-search">
+      <input type="text" placeholder="Insert search"></input>
+      <button class='search'><img src='search-icon.png' class='search-icon'>Search</button>
+     </div>
+    </header>
     <section class="container">
+      <div class='loading'>
+      <!--  <p>🅻🅾🅰🅳🅸🅽🅶</p> -->
+        <img src='one-piece.png' class='loading-text'>
+        <img src='chop.gif' class="chop">
+      </div>
+      <div class='error'>
+        <img src='chop-fail-img.png' class="error-img">
+        <img src='chop-fail-text.png' class='error-text'>        
+      </div>  
       <section class="items"></section>
       <section class="cart">
-        <span class="cart__title">Carrinho de compras</span>
+        <span class="cart__title">Shopping Cart</span>
         <button class="empty-cart">Esvaziar carrinho</button>
-        <ol class="cart__items"></ol>
+        <div class='total-price'>Total Price: R$ 0.00</div>
+        <img src='sage.png' class='sage'>
+        <hr>
+          <span class="cart__items">
+          </span>
       </section>
     </section>
   </body>
