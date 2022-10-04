@@ -18,7 +18,7 @@ const saveCart = async () => {
 
 async function sumPrices(price) {
   totalCount += price;
-  totalPrice().innerHTML = `Total Price: $ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
+  totalPrice().innerHTML = `Total Price: R$ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
   saveCart();
 }
 
@@ -27,7 +27,7 @@ async function subPrice(li) {
   if ((totalCount <= 0) || (totalCount === null)) {
     totalCount = 0;
   }
-  totalPrice().innerHTML = `Total Price: $ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
+  totalPrice().innerHTML = `Total Price: R$ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
   saveCart();
 }
 
@@ -44,13 +44,12 @@ function clearCart() {
 }
 
 function cartItemClickListener(event) {
-
-if(event.target.className === 'cart__item'){
+if (event.target.className === 'cart__item') {
   subPrice(event.target.id);
-  totalPrice().innerHTML = `Total Price: $ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
+  totalPrice().innerHTML = `Total Price: R$ ${(Number.parseFloat(totalCount).toFixed(2))}`; 
   event.target.parentNode.removeChild(event.target);
   saveCart();
-}else if((event.target.className === 'cart__price') && (event.target.parentNode.className === 'cart__item')){
+} else if ((event.target.className === 'cart__price') && (event.target.parentNode.className === 'cart__item')) {
   subPrice(event.target.innerText);
   event.target.parentNode.remove();
   saveCart();
@@ -63,11 +62,11 @@ function createCartItemElement({ sku, name, salePrice }) {
   const price = document.createElement('span');
   price.className = 'cart__price';
   price.style.fontWeight = 'bold';
-  price.style.fontSize = '16px'
+  price.style.fontSize = '16px';
   price.innerText = salePrice.toFixed(2);
   li.className = 'cart__item';
   li.id = `${salePrice}`;
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $ `;
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: R$ `;
   li.appendChild(price);
   li.style.margin = '0px 20px 30px';
   li.addEventListener('click', cartItemClickListener);
@@ -81,8 +80,8 @@ function createCustomElement(element, className, innerText) {
   const e = document.createElement(element);
   e.className = className;
   e.innerText = innerText;
-  if(e.className === 'item__price') {
-    e.innerText = `Price $${innerText}`;
+  if (e.className === 'item__price') {
+    e.innerText = `Price R$${innerText}`;
   }
   if (e.className === 'item__add') {
     e.style.padding = '10px';
@@ -91,8 +90,8 @@ function createCustomElement(element, className, innerText) {
       event.target.style.backgroundColor = 'rgb(95, 167, 95)';
       event.target.addEventListener('mouseleave', (event) => {
         event.target.style.backgroundColor = 'rgb(0, 110, 0)';
-      })
-    })
+      });
+    });
     e.addEventListener('click', (event) => {
       // Rever esse if abaixo. PARA QUE  ISSO ???? kkkkkkkkk
       let idProduct;
@@ -153,10 +152,10 @@ function showFailMessage() {
   const container = document.querySelector('.loading');
   const failImg = document.createElement('.fail-img');
   const failText = document.createElement('.fail-text');
-  failImg.src ='chop-fail-text.png';
-  failImg.style.width = '420px'
-  failText.src = 'chop-fail.png'
-  failText.style.bottom = '120px'
+  failImg.src = 'chop-fail-text.png';
+  failImg.style.width = '420px';
+  failText.src = 'chop-fail.png';
+  failText.style.bottom = '120px';
   container.appendChild(failImg);
   container.appendChild(failText); 
 }
@@ -181,12 +180,13 @@ function inputSearch() {
   setTimeout(() => fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${input.value}`)
    .then((fetchPromise) => fetchPromise.json())
    .then((result) => {
-    if(result.results.length === 0) {
+    if (result.results.length === 0) {
       showError();
-    }else {
+    } else {
       newElementFromApi(result).forEach((item) => createProductItemElement(item));
-    }})
-   .catch((err)=> showError(err)),  2000);  
+    } 
+})
+   .catch((err) => showError(err)), 2000);  
 }
  
 window.onload = () => {  
@@ -226,8 +226,7 @@ window.onload = () => {
        .then((fetchPromise) => fetchPromise.json())
        .then((product) => newElementFromApi(product))
        .then((product) => product.forEach((item) => createProductItemElement(item)))
-       .catch((err)=> showError(err)), 2000)
+       .catch((err) => showError(err)), 2000);
   }
   getInfoApi(); 
 };
-
